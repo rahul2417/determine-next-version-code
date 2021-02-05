@@ -37,7 +37,7 @@ async function run() {
   const owner = env.GITHUB_REPOSITORY.split("/")[0];
   const repo = env.GITHUB_REPOSITORY.split("/")[1];
 
-  const versionTagRegex = new RegExp(`^${tagPrefix}(\\d+)\\.(\\d+)\\.(\\d+)$`);
+  const versionTagRegex = new RegExp(`^${tagPrefix}(\\d+)\\.(\\d+)\\.(\\d+)*$`);
 
   const allTags = await listAllTags(octokit, owner, repo);
   const tags = allTags.filter((el) => el.match(versionTagRegex));
@@ -75,13 +75,16 @@ async function run() {
     return 0;
   });
   const split = tags[0].substring(tagPrefix.length).split(".");
-  const nextX = parseInt(split[0]) * 100000;
-  const nextY = parseInt(split[1]) * 10000;
-  const nextZ = parseInt(split[2]) * 1000;
+  const regExp = /\(([^)]+)\)/;
+  const code = regExp.exec(tags[0]);
+  if(code==null){
+    code=1
+  }
+  const nextX = parseInt(split[0]);
+  const nextY = parseInt(split[1]);
+  const nextZ = parseInt(split[2]);
 
-  const code=nextX+nextY+nextZ
-
-  setBuildVersion(code);
+  setBuildVersion(`${nextX}.${nextY}.${nextZ}(${code})`);
 }
 
 run();
