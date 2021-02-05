@@ -2,8 +2,8 @@ const core = require("@actions/core");
 const github = require("@actions/github");
 const env = process.env;
 
-function setBuildVersion(buildVersion) {
-  core.setOutput("NEXT_BUILD_VERSION_CODE", buildVersion);
+function setBuildVersion(code) {
+  core.setOutput("NEXT_BUILD_VERSION_CODE", code);
 }
 
 async function listAllTags(octokit, owner, repo) {
@@ -43,7 +43,7 @@ async function run() {
   const tags = allTags.filter((el) => el.match(versionTagRegex));
 
   if (tags.length < 1) {
-    setBuildVersion("0.0.1");
+    setBuildVersion("0.0.1(1)");
     return;
   }
 
@@ -75,11 +75,13 @@ async function run() {
     return 0;
   });
   const split = tags[0].substring(tagPrefix.length).split(".");
-  const nextX = parseInt(split[0]);
-  const nextY = parseInt(split[1]);
-  const nextZ = parseInt(split[2]) + 1;
+  const nextX = parseInt(split[0]) * 100000;
+  const nextY = parseInt(split[1]) * 10000;
+  const nextZ = parseInt(split[2]) * 1000;
 
-  setBuildVersion(`${nextX}.${nextY}.${nextZ}`);
+  const code=nextX+nextY+nextZ
+
+  setBuildVersion(code);
 }
 
 run();
