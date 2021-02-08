@@ -37,7 +37,7 @@ async function run() {
   const owner = env.GITHUB_REPOSITORY.split("/")[0];
   const repo = env.GITHUB_REPOSITORY.split("/")[1];
 
-  const versionTagRegex = new RegExp(`^${tagPrefix}(\\d+)\\.(\\d+)\\.(\\d+)$`);
+  const versionTagRegex = new RegExp(`^${tagPrefix}(\\d+)\\.(\\d+)\\.(\\d+)\\(\\d+\\)$`);
 
   const allTags = await listAllTags(octokit, owner, repo);
   const tags = allTags.filter((el) => el.match(versionTagRegex));
