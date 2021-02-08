@@ -85,7 +85,7 @@ async function run() {
   const nextY = parseInt(split[1]);
   const nextZ = parseInt(split[2]);
 
-  setBuildVersion(`${nextX}.${nextY}.${nextZ}\(${parseInt(code)}\)`);
+  setBuildVersion(`${nextX}.${nextY}.${nextZ}\\(${parseInt(code)}\\)`);
 }
 
 run();
