@@ -77,6 +77,7 @@ async function run() {
   const split = tags[0].substring(tagPrefix.length).split(".");
   const regExp = /\(([^)]+)\)/;
   var code = regExp.exec(tags[0]);
+  
   if(code==null){
     code=1
   } else {
@@ -87,7 +88,7 @@ async function run() {
   const nextY = parseInt(split[1]);
   const nextZ = parseInt(split[2]) + 1;
 
-  setBuildVersion(`${nextX}.${nextY}.${nextZ}\\\(${parseInt(code)}\\\)`);
+  setBuildVersion(`${nextX}.${nextY}.${nextZ}\\\(${code}\\\)`);
 }
 
 run();
