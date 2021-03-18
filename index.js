@@ -80,7 +80,7 @@ async function run() {
   if(code==null){
     code=1
   } else {
-    code++
+    code = parseInt(code) + 1
   }
 
   const nextX = parseInt(split[0]);
