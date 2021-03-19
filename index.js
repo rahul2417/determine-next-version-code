@@ -43,7 +43,7 @@ async function run() {
   const tags = allTags.filter((el) => el.match(versionTagRegex));
 
   if (tags.length < 1) {
-    setBuildVersion("0.0.1(1)");
+    setBuildVersion("0.0.1\\(1\\)");
     return;
   }
 
@@ -88,7 +88,7 @@ async function run() {
   const nextY = parseInt(split[1]);
   const nextZ = parseInt(split[2]) + 1;
 
-  setBuildVersion(`${nextX}.${nextY}.${nextZ}\\\(${code}\\\)`);
+  setBuildVersion(`${nextX}.${nextY}.${nextZ}\\(${code}\\)`);
 }
 
 run();
