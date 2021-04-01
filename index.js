@@ -75,8 +75,8 @@ async function run() {
     return 0;
   });
   const split = tags[0].substring(tagPrefix.length).split(".");
-  const regExp = /(([^)]+))/;
-  var code = regExp.exec(tags[0]);
+  const regExp = tags[0].match(/\((.*)\)/);
+  var code = regExp[1]
   
   if(code==null){
     code=1
