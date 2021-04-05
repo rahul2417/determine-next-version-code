@@ -3,7 +3,7 @@ const github = require("@actions/github");
 const env = process.env;
 
 function setBuildVersion(code) {
-  core.setOutput("NEXT_BUILD_VERSION_CODE", code);
+  core.setOutput("NEXT_BUILD_VERSION", code);
 }
 
 async function listAllTags(octokit, owner, repo) {

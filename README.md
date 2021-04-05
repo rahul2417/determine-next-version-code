@@ -1,6 +1,6 @@
 # Determine Next Version GitHub Action
 
-This action looks at git tags in a repository that begin with `v`, and are of format `x.y.z`, where `x`, `y`, and `z` are integers that represent the major, minor, and patch versions respectively. It then sets an output with `x.y.z+1`.
+This action looks at git tags in a repository that begin with `v`, and are of format `x.y.z(n)`, where `x`, `y`, `z` , and `n` are integers that represent the major, minor, patch, and version code respectively. It then sets an output with `x.y.z+1(n+1)`.
 
 ## Inputs
 
@@ -30,7 +30,7 @@ Next build version to use.
 
 ```yml
 - name: Determine next version
-  uses: gps/determine_next_version@master
+  uses: rahul2417/determine-next-version-code@master
   id: next_version
   with:
     GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
